@@ -1,0 +1,1 @@
+In this 6th-Contacts version I'm using Webpack with modules.
