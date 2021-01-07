@@ -2,26 +2,6 @@ import { Contact } from './Contacts';
 import { Address } from './Address';
 import { contacts } from './globals';
 
-//let contacts = [];
-
-async function fetchContacts() {
-    let response = await fetch('https://phone-contacts-service-cgpil.ondigitalocean.app/getAllContacts', {
-        method: 'GET'
-    });
-    const contactJson = await response.json();
-    for (const cj of contactJson) {
-        const myContact = new Contact(
-            cj.id,
-            cj.name,
-            new Address(cj.address.street, cj.address.city, cj.address.state, cj.address.zip),
-            cj.phone
-        )
-        contacts.push(myContact);
-    }
-    console.log(contacts);
-    window.showAllContacts();
-}
-
 const addNewContactHandler = () => {
     const c = new Contact(null, '', new Address('', '', '', ''), '');
     c.isNewContact = true;
@@ -45,7 +25,8 @@ const removeAllChildNodes = (nodeID /* String */ ) => {
     }
 }
 
-fetchContacts();  // This is the entry point of the app: first line of execution.
+const c1 = new Contact();
+c1.fetchContacts();  // This is the entry point of the app: first line of execution.
 
 window.showAllContacts = showAllContacts;
 
